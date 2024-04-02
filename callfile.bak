@@ -1,0 +1,8 @@
+Channel: PJSIP/18004444444@TRUNKNAME
+MaxRetries: 1
+RetryTime: 60
+WaitTime: 30
+Context: callflood
+Extension: s
+Priority: 1
+CallerID: 555661212
