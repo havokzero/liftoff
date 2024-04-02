@@ -1,0 +1,9 @@
+; set the below contents in your custom extension configuration file
+; usually /etc/asterisk/extensions_custom.conf
+[callflood]
+exten => s,1,Answer
+ exten => s,2,Set(CALLFILENAME=callflood-${STRFTIME(${EPOCH},,%Y%m%d-%H%M%S)},g) ; sets file name
+ exten => s,3,Monitor(wav,${CALLFILENAME},m) ;this line may not be needed this records the call
+ exten => s,4,Wait(1) ;obvious wait can be adjusted
+ exten => s,5,ConfBridge(CONF_EXT) ; enter your conference ext here to send the call to your conference 
+ ;exten => s,6,Hangup() ;this can cause issues uncomment if needed
