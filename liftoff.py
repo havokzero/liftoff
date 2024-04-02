@@ -7,6 +7,7 @@ import asyncio
 import aiofiles
 import subprocess
 import re
+from agi_handler import update_caller_id
 
 # Setup basic logging
 logging.basicConfig(filename='call_placement.log', level=logging.INFO, format='%(asctime)s %(message)s')
@@ -118,7 +119,8 @@ async def main():
         print("\nOptions:")
         print("1 - Initiate Calls")
         print("2 - Hang Up All Calls")
-        print("3 - Exit Program")
+        print("3 - Update Caller ID for Extension")
+        print("4 - Exit Program")
         user_choice = input("Select an option: ").strip()
 
         if user_choice == "1":
@@ -146,11 +148,19 @@ async def main():
             await hangup_all_calls()
 
         elif user_choice == "3":
+            extension = input("Enter the extension to update: ").strip()
+            new_caller_id = input("Enter the new Caller ID for this extension: ").strip()
+            if update_caller_id(extension, new_caller_id):  # Ensure update_caller_id is properly imported or defined
+                print("Caller ID updated successfully.")
+            else:
+                print("Failed to update Caller ID.")
+
+        elif user_choice == "4":
             print("Exiting program.")
             break
 
         else:
-            print("Invalid option. Please select 1, 2, or 3.")
+            print("Invalid option. Please select 1, 2, 3, or 4.")
 
 if __name__ == "__main__":
     asyncio.run(main())
