@@ -1,4 +1,4 @@
-Channel: PJSIP/18004444444@TRUNKNAME
+Channel: PJSIP/18004444444@TRUNK_NAME
 MaxRetries: 1
 RetryTime: 60
 WaitTime: 30
